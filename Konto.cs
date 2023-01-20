@@ -24,7 +24,7 @@ namespace Bokning_G
                         break;
                     case "nej":
                         Console.Clear();
-                        SkapaKonto();
+                        SkapaKonto(); // skapar konto
                         Console.Clear();
                         Console.WriteLine("Du har nu skapat ett konto");
                         Console.ReadKey();
@@ -60,13 +60,13 @@ namespace Bokning_G
                         }
                         else
                         {
-                            Console.Clear(); // test
+                            Console.Clear();
                             Console.WriteLine("Lösenordet är fel");
                             Console.ReadKey();
                             Console.Clear();
                         }
                     }
-                    else if (loggain != null)
+                    else if (loggain != null) // kund
                     {
                         Console.WriteLine("Ange Lösenord");
                         string lösen = Console.ReadLine();
@@ -101,7 +101,7 @@ namespace Bokning_G
         enum MenuListAdmin
         {
             Uppdatera_kunder = 1,
-            Ändra_Bokning,
+            Ändra_bokning_och_hur_mycket_du_tjänar_per_månad,
             Logga_ut = 9
         }
         public static void SkapaKonto()
@@ -121,7 +121,7 @@ namespace Bokning_G
             int telefonnummer;
             if (int.TryParse(Console.ReadLine(), out telefonnummer))
             {
-                using (var db = new MyDBContext()) // CREATE / INSERT
+                using (var db = new MyDBContext())
                 {
                     var Konton = new SkapaKonto
                     {
@@ -191,7 +191,7 @@ namespace Bokning_G
                             case MenuListAdmin.Uppdatera_kunder:
                                 KontoTyp.Admin.ÄndraAdmin();
                                 break;
-                            case MenuListAdmin.Ändra_Bokning:
+                            case MenuListAdmin.Ändra_bokning_och_hur_mycket_du_tjänar_per_månad:
                                 KontoTyp.Admin.ÄndraBokningar();
                                 break;
                             case MenuListAdmin.Logga_ut:

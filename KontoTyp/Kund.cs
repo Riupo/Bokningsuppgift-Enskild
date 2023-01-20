@@ -11,7 +11,7 @@ namespace Bokning_G.KontoTyp
     {
         public static void bokningar(int kundid, string namn)
         {
-            using (var db = new MyDBContext()) // CREATE / INSERT
+            using (var db = new MyDBContext())
             {
                 int case1 = 0;
                 int case2 = 0;
@@ -46,7 +46,7 @@ namespace Bokning_G.KontoTyp
                         case2++;
                     }
                 }
-                if (case1 > case2)
+                if (case1 > case2) // kollar vad den populäraste produkten är 
                 {
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine("Det populäraste alternativet är att klippa år och skägg! För 250kr");
@@ -58,12 +58,12 @@ namespace Bokning_G.KontoTyp
                     Console.WriteLine("Det populäraste alternativet är att endast klippa år! För 200kr");
                     Console.ResetColor();
                 }
-                else if (case1 == case2)
+                else if (case1 == case2) 
                 {
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine("Alternativen är lika mycket valda");
                     Console.ResetColor();
-                }
+                } 
                 DateTime userDateInput;
                 Console.Write("[1] Det kostar: ");
                 Console.ForegroundColor = ConsoleColor.Red;
@@ -75,6 +75,7 @@ namespace Bokning_G.KontoTyp
                 Console.Write("200kr");
                 Console.ResetColor();
                 Console.WriteLine(" för att klippa endast hår");
+                Console.WriteLine("[0] För att gå tillbaka");
                 if (int.TryParse(Console.ReadLine(), out switcherr))
                     switch (switcherr)
                 {
@@ -114,14 +115,7 @@ namespace Bokning_G.KontoTyp
                                 {
                                     var Skapabokningar = new Bokningar
                                     {
-                                        //Tid = userDateInput,
-                                        //KundNamn = namn,
-                                        //SkapaKontoId = kundid
-
                                     };
-                                    //var skapade = db.Bokningarna;
-                                    //skapade.Add(Skapabokningar);
-                                    //db.SaveChanges();
                                     if (userDateInput.ToString("d-HH") == Skapabokningar.Tid.ToString("d-HH"))
                                     {
                                         Console.WriteLine("Du kan inte boka denna tid för den är redan bokad");
@@ -192,14 +186,8 @@ namespace Bokning_G.KontoTyp
                                 {
                                     var Skapabokningar = new Bokningar
                                     {
-                                        //Tid = userDateInput,
-                                        //KundNamn = namn,
-                                        //SkapaKontoId = kundid
-
                                     };
-                                    //var skapade = db.Bokningarna;
-                                    //skapade.Add(Skapabokningar);
-                                    //db.SaveChanges();
+
                                     if (userDateInput.ToString("d-HH") == Skapabokningar.Tid.ToString("d-HH"))
                                     {
                                         Console.WriteLine("Du kan inte boka denna tid för den är redan bokad");
@@ -231,6 +219,12 @@ namespace Bokning_G.KontoTyp
                                 Console.ReadKey();
                                 Console.Clear();
                             }
+                            break;
+                        case 0:
+                            Console.Clear();
+                            Console.WriteLine("Du har valt att gå tillbaka");
+                            Console.ReadKey();
+                            Console.Clear();
                             break;
                     }
                 else
