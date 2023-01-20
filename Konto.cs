@@ -53,7 +53,7 @@ namespace Bokning_G
                     {
                         Console.WriteLine("Ange Lösenord");
                         string lösen = Console.ReadLine();
-                        if (lösen == "123bilal123") // admin
+                        if (lösen == loggain.Lösenord) // admin
                         {
                             Console.Clear();
                             AdminLogin(svar);
