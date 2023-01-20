@@ -57,7 +57,7 @@ namespace Bokning_G
                         {
                             Console.Clear();
                             AdminLogin(svar);
-                        }s
+                        }
                         else
                         {
                             Console.Clear();
