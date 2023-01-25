@@ -15,15 +15,18 @@ namespace Bokning_G.Models
         public DbSet<SkapaKonto> Skapade { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.Entity<SkapaKonto>()
+                builder.Entity<SkapaKonto>()
                 .HasIndex(u => u.Användernamn)
                 .IsUnique();
+            
             builder.Entity<SkapaKonto>()
                  .HasIndex(u => u.Mail)
                   .IsUnique();
-            builder.Entity<Bokningar>()
-             .HasIndex(u => u.Tid)
-             .IsUnique();
+                builder.Entity<Bokningar>()
+                    .HasIndex(u => u.Tid)
+                    .IsUnique();
+          
+            
         }
     }
 }

@@ -66,6 +66,7 @@ namespace Bokning_G
                             Console.Clear();
                         }
                     }
+                    
                     else if (loggain != null) // kund
                     {
                         Console.WriteLine("Ange Lösenord");

@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Bokning_G.Migrations
 {
     [DbContext(typeof(MyDBContext))]
-    [Migration("20230125103720_init")]
+    [Migration("20230125105809_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

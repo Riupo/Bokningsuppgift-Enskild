@@ -80,72 +80,82 @@ namespace Bokning_G.KontoTyp
                     switch (switcherr)
                 {
                         case 1:
-                            Console.WriteLine("Mata in de nya datumet i detta format (YYYY-MM-DD hh:00)");
-                            if (DateTime.TryParse(Console.ReadLine(), out userDateInput))
+                            try
                             {
-                                if (userDateInput <= Nu)
+                                Console.WriteLine("Mata in de nya datumet i detta format (YYYY-MM-DD hh:00)");
+                                if (DateTime.TryParse(Console.ReadLine(), out userDateInput))
                                 {
-                                    Console.Clear();
-                                    Console.WriteLine("Du skrev in ett datum som redan har passerat");
-                                    Console.ReadKey();
-                                    Console.Clear();
+                                    if (userDateInput <= Nu)
+                                    {
+                                        Console.Clear();
+                                        Console.WriteLine("Du skrev in ett datum som redan har passerat");
+                                        Console.ReadKey();
+                                        Console.Clear();
+                                    }
+                                    else if (userDateInput.ToString("mm") != "00")
+                                    {
+                                        Console.Clear();
+                                        Console.WriteLine("Fel inmatning");
+                                        Console.ReadKey();
+                                        Console.Clear();
+                                    }
+                                    else if (userDateInput.Hour >= Stängning.Hour)
+                                    {
+                                        Console.Clear();
+                                        Console.WriteLine("Det är stängt boka en annan tid");
+                                        Console.ReadKey();
+                                        Console.Clear();
+                                    }
+                                    else if (userDateInput.Hour <= Öppning.Hour)
+                                    {
+                                        Console.Clear();
+                                        Console.WriteLine("Det är stängt boka en annan tid");
+                                        Console.ReadKey();
+                                        Console.Clear();
+                                    }
+                                    else
+                                    {
+                                        var Skapabokningar = new Bokningar
+                                        {
+                                        };
+                                        if (userDateInput.ToString("D-HH") == Skapabokningar.Tid.ToString("D-HH"))
+                                        {
+                                            Console.WriteLine("Du kan inte boka denna tid för den är redan bokad");
+
+                                        }
+                                        else
+                                        {
+                                            var Skapabokningarna = new Bokningar
+                                            {
+                                                Tid = userDateInput,
+                                                KundNamn = namn,
+                                                SkapaKontoId = kundid,
+                                                Pris = 250
+                                            };
+                                            var skapade = db.Bokningarna;
+                                            skapade.Add(Skapabokningarna);
+                                            db.SaveChanges();
+                                            Console.Clear();
+                                            Console.ForegroundColor = ConsoleColor.Yellow;
+                                            Console.WriteLine($"Du har precis bokat tiden {userDateInput.ToString("f")}");
+                                            Console.ResetColor();
+                                            Console.ReadKey();
+                                            Console.Clear();
+                                        }
+                                    }
                                 }
-                                else if (userDateInput.ToString("mm") != "00")
+                                else
                                 {
                                     Console.Clear();
                                     Console.WriteLine("Fel inmatning");
                                     Console.ReadKey();
                                     Console.Clear();
                                 }
-                                else if (userDateInput.Hour >= Stängning.Hour)
-                                {
-                                    Console.Clear();
-                                    Console.WriteLine("Det är stängt boka en annan tid");
-                                    Console.ReadKey();
-                                    Console.Clear();
-                                }
-                                else if (userDateInput.Hour <= Öppning.Hour)
-                                {
-                                    Console.Clear();
-                                    Console.WriteLine("Det är stängt boka en annan tid");
-                                    Console.ReadKey();
-                                    Console.Clear();
-                                }
-                                else
-                                {
-                                    var Skapabokningar = new Bokningar
-                                    {
-                                    };
-                                    if (userDateInput.ToString("D-HH") == Skapabokningar.Tid.ToString("D-HH"))
-                                    {
-                                        Console.WriteLine("Du kan inte boka denna tid för den är redan bokad");
-
-                                    }
-                                    else
-                                    {
-                                        var Skapabokningarna = new Bokningar
-                                        {
-                                            Tid = userDateInput,
-                                            KundNamn = namn,
-                                            SkapaKontoId = kundid,
-                                            Pris = 250
-                                        };
-                                        var skapade = db.Bokningarna;
-                                        skapade.Add(Skapabokningarna);
-                                        db.SaveChanges();
-                                        Console.Clear();
-                                        Console.ForegroundColor = ConsoleColor.Yellow;
-                                        Console.WriteLine($"Du har precis bokat tiden {userDateInput.ToString("f")}");
-                                        Console.ResetColor();
-                                        Console.ReadKey();
-                                        Console.Clear();
-                                    }
-                                }
                             }
-                            else
+                            catch
                             {
                                 Console.Clear();
-                                Console.WriteLine("Fel inmatning");
+                                Console.WriteLine("Det angivna datumet är redan bokat");
                                 Console.ReadKey();
                                 Console.Clear();
                             }
