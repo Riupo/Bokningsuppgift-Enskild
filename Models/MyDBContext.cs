@@ -21,6 +21,9 @@ namespace Bokning_G.Models
             builder.Entity<SkapaKonto>()
                  .HasIndex(u => u.Mail)
                   .IsUnique();
+            builder.Entity<Bokningar>()
+             .HasIndex(u => u.Tid)
+             .IsUnique();
         }
     }
 }

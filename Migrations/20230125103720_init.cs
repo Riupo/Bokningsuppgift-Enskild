@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Bokning_G.Migrations
 {
-    public partial class @new : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -36,7 +36,8 @@ namespace Bokning_G.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     SkapaKontoId = table.Column<int>(type: "int", nullable: false),
                     KundNamn = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Tid = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    Tid = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Pris = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {

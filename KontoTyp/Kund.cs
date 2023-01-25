@@ -116,7 +116,7 @@ namespace Bokning_G.KontoTyp
                                     var Skapabokningar = new Bokningar
                                     {
                                     };
-                                    if (userDateInput.ToString("d-HH") == Skapabokningar.Tid.ToString("d-HH"))
+                                    if (userDateInput.ToString("D-HH") == Skapabokningar.Tid.ToString("D-HH"))
                                     {
                                         Console.WriteLine("Du kan inte boka denna tid för den är redan bokad");
 

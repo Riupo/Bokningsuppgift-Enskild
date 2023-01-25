@@ -15,7 +15,7 @@ namespace Bokning_G.KontoTyp
         public static void ÄndraAdmin()
         {
             Console.Clear();
-            using (var db = new MyDBContext()) // READ
+            using (var db = new MyDBContext()) 
             {
                 var List = db.Skapade;
                 Console.WriteLine("Id  -  Namn  -  Användernamn  -  Lösenord  -  Email  -  Telefonnummer  -  Ålder  -  Admin");

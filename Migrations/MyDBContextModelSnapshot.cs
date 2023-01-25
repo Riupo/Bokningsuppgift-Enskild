@@ -34,9 +34,6 @@ namespace Bokning_G.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("KändastProdukt")
-                        .HasColumnType("bit");
-
                     b.Property<int>("Pris")
                         .HasColumnType("int");
 
@@ -49,6 +46,9 @@ namespace Bokning_G.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("SkapaKontoId");
+
+                    b.HasIndex("Tid")
+                        .IsUnique();
 
                     b.ToTable("Bokningarna");
                 });

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Bokning_G.Migrations
 {
     [DbContext(typeof(MyDBContext))]
-    [Migration("20230118160545_new")]
-    partial class @new
+    [Migration("20230125103720_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -35,6 +35,9 @@ namespace Bokning_G.Migrations
                     b.Property<string>("KundNamn")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Pris")
+                        .HasColumnType("int");
 
                     b.Property<int>("SkapaKontoId")
                         .HasColumnType("int");
